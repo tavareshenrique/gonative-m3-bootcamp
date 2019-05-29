@@ -8,7 +8,9 @@ import styles from './styles';
 const Welcome = ({ todos, dispatch }) => (
   <View style={styles.container}>
     {todos.map(todo => (
-      <Text style={styles.welcome}>{todo}</Text>
+      <Text style={{ textDecorationLine: todo.completed ? 'line-through' : 'none' }} key={todo.id}>
+        {todo.text}
+      </Text>
     ))}
     <Button onPress={() => dispatch({ type: 'ADD_TODO', text: 'Novo Todo' })} title="Add ToDo" />
   </View>
