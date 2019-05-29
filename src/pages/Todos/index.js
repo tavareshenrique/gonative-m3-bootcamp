@@ -8,7 +8,7 @@ import { View, Text, Button } from 'react-native';
 
 import styles from './styles';
 
-const Welcome = ({ todos, addTodo, markAsCompleted }) => (
+const Todos = ({ todos, addTodo, markAsCompleted }) => (
   <View style={styles.container}>
     {todos.map(todo => (
       <Text
@@ -32,4 +32,4 @@ const mapDispatchToProps = dispatch => bindActionCreators(TodosActions, dispatch
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Welcome);
+)(Todos);

@@ -1,10 +1,10 @@
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 
-import Welcome from '~/pages/Welcome';
+import Todos from '~/pages/Todos';
 
 const Routes = () => createAppContainer(
   createSwitchNavigator({
-    Welcome,
+    Todos,
   }),
 );
 
