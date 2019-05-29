@@ -1,13 +1,20 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import { View, Text } from 'react-native';
 
 import styles from './styles';
 
-const Welcome = () => (
+const Welcome = ({ todos }) => (
   <View style={styles.container}>
-    <Text style={styles.welcome}>Welcome to @ihenrits React Native Template Basic</Text>
+    {todos.map(todo => (
+      <Text style={styles.welcome}>{todo}</Text>
+    ))}
   </View>
 );
 
-export default Welcome;
+const mapStateToProps = state => ({
+  todos: state,
+});
+
+export default connect(mapStateToProps)(Welcome);
