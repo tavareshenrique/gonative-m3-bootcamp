@@ -7,12 +7,13 @@ import './config/DevToolsConfig';
 import store from './store';
 
 import createNavigator from './routes';
+import { setNavigator } from './services/navigation';
 
 const App = () => {
   const Routes = createNavigator();
   return (
     <Provider store={store}>
-      <Routes />
+      <Routes ref={setNavigator} />
     </Provider>
   );
 };
