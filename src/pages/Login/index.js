@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import api from '~/services/api';
 
+import { ActivityIndicator } from 'react-native';
+
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as LoginActions from '~/store/actions/login';
@@ -16,22 +18,14 @@ class Login extends Component {
 
   handleSubmit = async () => {
     const { username } = this.state;
-    const { loginSuccess, loginFailure, navigation } = this.props;
+    const { loginRequest } = this.props;
 
-    try {
-      await api.get(`/users/${username}`);
-
-      loginSuccess(username);
-
-      navigation.navigate('Repositories');
-    } catch (err) {
-      loginFailure();
-    }
+    loginRequest(username);
   };
 
   render() {
     const { username } = this.state;
-    const { error } = this.props;
+    const { error, loading } = this.props;
 
     return (
       <Container>
@@ -45,7 +39,13 @@ class Login extends Component {
           placeholder="Digite seu usuário"
         />
         <Button onPress={this.handleSubmit}>
-          <ButtonText>Entrar</ButtonText>
+          <ButtonText>
+            {loading ? (
+              <ActivityIndicator size="small" color="#FFF" />
+            ) : (
+              <ButtonText>Entrar</ButtonText>
+            )}
+          </ButtonText>
         </Button>
       </Container>
     );
